@@ -1,1 +1,32 @@
 # 11-Express-Note-Taker
+<a name="desc"></a>
+An application that can be used to write, save, and delete notes. This application will use an express backend and save and retrieve note data from a JSON file.
+
+## Table of Contents
+
+- [Description](#desc)
+- [Installation](#installation)
+- [Usage](#Usage)
+- [GIF](#GIF)
+- [Deployed URL](#Deployed-URL)
+
+
+## Installation
+
+$ npm install
+
+
+## Usage
+
+- Run node start in terminal. 
+- Open up localhost:3000 in browser
+
+
+## GIF
+
+![App Screenshot](./public/assets/img/appScreenCapture.gif)
+
+
+## Deployed URL
+
+- https://mandywl.github.io/10-Team-Profile-Generator/Develop/output/team.html
