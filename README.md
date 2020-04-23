@@ -19,7 +19,7 @@ $ npm install
 ## Usage
 
 - Run node start in terminal. 
-- Open up localhost:3000 in browser
+- Open up localhost:8080 in browser
 
 
 ## GIF

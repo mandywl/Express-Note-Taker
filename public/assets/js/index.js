@@ -61,7 +61,7 @@ var handleNoteSave = function() {
     getAndRenderNotes();
     renderActiveNote();
   });
-  location.reload();
+  //location.reload();
 };
 
 // Delete the clicked note
