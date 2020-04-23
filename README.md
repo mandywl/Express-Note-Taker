@@ -24,7 +24,7 @@ $ npm install
 
 ## GIF
 
-![App Screenshot](https://github.com/mandywl/11-Express-Note-Taker/blob/master/public/assets/img/appScreenCapture.gif)
+![App Screenshot](./public/assets/img/appScreenCapture.gif)
 
 
 ## Deployed URL
