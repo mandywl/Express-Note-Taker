@@ -19,9 +19,6 @@ let baseDir = path.join(__dirname, "/../db/db.json");
 // ===============================================================================
 
 module.exports = function (app) {
-  // API GET Requests
-  // ---------------------------------------------------------------------------
-
   function readFile() {
     var json = readFileAsync(baseDir, "utf8");
     return json;
@@ -34,45 +31,28 @@ module.exports = function (app) {
     } catch (err) {
       console.log(err);
     }
-    // readFile().then(function (data, err) {
-    //   if (err) { throw err }
-    //   console.log(err)
-    //   res.json(JSON.parse(data));
-    // });
-
-    //res.sendFile(baseDir);
   });
 
   app.post("/api/notes", async function (req, res) {
+    var newId;
     try {
       var data = await readFile();
       var newFile = JSON.parse(data);
-      var lastElement = newFile.slice(-1);
-      var newId = lastElement[0].id + 1;
-      console.log("newId id is ", newId);
+      if (newFile.length == 0) {
+        newId = 1;
+      } else {
+        var lastElement = newFile.slice(-1);
+        newId = lastElement[0].id + 1;
+      }
       var newNote = req.body;
       newNote.id = newId;
       newFile.push(newNote);
-      //console.log(newNote);
       writeFileAsync(baseDir, JSON.stringify(newFile)).then(function () {
-        res.send(200);
+        res.sendStatus(200);
       });
     } catch (err) {
       console.log(err);
     }
-    // readFile().then(function (data) {
-    //   var newFile = JSON.parse(data);
-    //   var lastElement = newFile.slice(-1);
-    //   var newId = lastElement[0].id + 1;
-    //   console.log("newId id is ", newId);
-    //   var newNote = req.body;
-    //   newNote.id = newId;
-    //   newFile.push(newNote);
-    //   //console.log(newNote);
-    //   writeFileAsync(baseDir, JSON.stringify(newFile)).then(function () {
-    //     res.send(200);
-    //   });
-    // });
   });
 
   app.delete("/api/notes/:id", async function (req, res) {
@@ -81,33 +61,15 @@ module.exports = function (app) {
       var noteData = JSON.parse(data).filter(
         (note) => note.id != req.params.id
       );
-      console.log("noteData is ", noteData);
       writeFileAsync(baseDir, JSON.stringify(noteData)).then((err) => {
         if (err) {
           console.log(err);
           throw err;
         }
-        console.log("Deleted");
         res.send("Deleted");
       });
     } catch (err) {
       console.log(err);
     }
-    // console.log(req.params);
-    // readFile().then(function (data) {
-    //   var noteData = JSON.parse(data).filter(
-    //     (note) => note.id != req.params.id
-    //   );
-    //   console.log("noteData is ", noteData);
-    //   writeFileAsync(baseDir, JSON.stringify(noteData)).then((err) => {
-    //     if (err) {
-    //       console.log(err);
-    //       throw err;
-    //     }
-    //     console.log("Deleted");
-    //     res.send("Deleted");
-    //   });
-
-    // });
   });
 };
